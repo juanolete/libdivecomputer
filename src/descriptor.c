@@ -475,6 +475,8 @@ static const dc_descriptor_t g_descriptors[] = {
 	/* Divesoft Freedom */
 	{"Divesoft", "Freedom", DC_FAMILY_DIVESOFT_FREEDOM, 19, DC_TRANSPORT_BLE, dc_filter_divesoft},
 	{"Divesoft", "Liberty", DC_FAMILY_DIVESOFT_FREEDOM, 10, DC_TRANSPORT_BLE, dc_filter_divesoft},
+	/* Demo */
+	{"Vendor", "Product", DC_FAMILY_VENDOR_PRODUCT, 0, DC_TRANSPORT_SERIAL, NULL},
 };
 
 static int
