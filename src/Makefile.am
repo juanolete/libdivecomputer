@@ -82,7 +82,7 @@ libdivecomputer_la_SOURCES = \
 	oceans_s1_common.h oceans_s1_common.c \
 	oceans_s1.h oceans_s1.c oceans_s1_parser.c \
 	divesoft_freedom.h divesoft_freedom.c divesoft_freedom_parser.c \
-	vendor_product.h vendor_product.c vendor_product_parser.c \
+	scielex_datalogger.h scielex_datalogger.c scielex_datalogger_parser.c \
 	hdlc.h hdlc.c \
 	packet.h packet.c \
 	socket.h socket.c \

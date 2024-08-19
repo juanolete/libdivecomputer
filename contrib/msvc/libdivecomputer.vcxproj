@@ -282,8 +282,8 @@
     <ClCompile Include="..\..\src\uwatec_memomouse_parser.c" />
     <ClCompile Include="..\..\src\uwatec_smart.c" />
     <ClCompile Include="..\..\src\uwatec_smart_parser.c" />
-    <ClCompile Include="..\..\src\vendor_product.c" />
-    <ClCompile Include="..\..\src\vendor_product_parser.c" />
+    <ClCompile Include="..\..\src\scielex_datalogger.c" />
+    <ClCompile Include="..\..\src\scielex_datalogger_parser.c" />
     <ClCompile Include="..\..\src\version.c" />
     <ClCompile Include="..\..\src\zeagle_n2ition3.c" />
   </ItemGroup>
@@ -387,7 +387,7 @@
     <ClInclude Include="..\..\src\uwatec_aladin.h" />
     <ClInclude Include="..\..\src\uwatec_memomouse.h" />
     <ClInclude Include="..\..\src\uwatec_smart.h" />
-    <ClCompile Include="..\..\src\vendor_product.h" />
+    <ClCompile Include="..\..\src\scielex_datalogger.h" />
     <ClInclude Include="..\..\src\zeagle_n2ition3.h" />
   </ItemGroup>
   <ItemGroup>

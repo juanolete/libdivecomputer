@@ -19,8 +19,8 @@
  * MA 02110-1301 USA
  */
 
-#ifndef VENDOR_PRODUCT_H
-#define VENDOR_PRODUCT_H
+#ifndef SCIELEX_DATALOGGER_H
+#define SCIELEX_DATALOGGER_H
 
 #include <libdivecomputer/context.h>
 #include <libdivecomputer/iostream.h>
@@ -32,12 +32,12 @@ extern "C" {
 #endif /* __cplusplus */
 
 dc_status_t
-vendor_product_device_open (dc_device_t **device, dc_context_t *context, dc_iostream_t *iostream);
+scielex_datalogger_device_open (dc_device_t **device, dc_context_t *context, dc_iostream_t *iostream);
 
 dc_status_t
-vendor_product_parser_create (dc_parser_t **parser, dc_context_t *context, const unsigned char data[], size_t size);
+scielex_datalogger_parser_create (dc_parser_t **parser, dc_context_t *context, const unsigned char data[], size_t size);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-#endif /* VENDOR_PRODUCT_H */
+#endif /* SCIELEX_DATALOGGER_H */

@@ -23,45 +23,45 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "vendor_product.h"
+#include "scielex_datalogger.h"
 #include "context-private.h"
 #include "device-private.h"
 #include "platform.h"
 #include "checksum.h"
 #include "array.h"
 
-typedef struct vendor_product_device_t {
+typedef struct scielex_datalogger_device_t {
 	dc_device_t base;
 	dc_iostream_t *iostream;
 	unsigned char fingerprint[4];
-} vendor_product_device_t;
+} scielex_datalogger_device_t;
 
-static dc_status_t vendor_product_device_set_fingerprint (dc_device_t *abstract, const unsigned char data[], unsigned int size);
-static dc_status_t vendor_product_device_foreach (dc_device_t *abstract, dc_dive_callback_t callback, void *userdata);
+static dc_status_t scielex_datalogger_device_set_fingerprint (dc_device_t *abstract, const unsigned char data[], unsigned int size);
+static dc_status_t scielex_datalogger_device_foreach (dc_device_t *abstract, dc_dive_callback_t callback, void *userdata);
 
-static const dc_device_vtable_t vendor_product_device_vtable = {
-	sizeof(vendor_product_device_t),
-	DC_FAMILY_VENDOR_PRODUCT,
-	vendor_product_device_set_fingerprint, /* set_fingerprint */
+static const dc_device_vtable_t scielex_datalogger_device_vtable = {
+	sizeof(scielex_datalogger_device_t),
+	DC_FAMILY_SCIELEX_DATALOGGER,
+	scielex_datalogger_device_set_fingerprint, /* set_fingerprint */
 	NULL, /* read */
 	NULL, /* write */
 	NULL, /* dump */
-	vendor_product_device_foreach, /* foreach */
+	scielex_datalogger_device_foreach, /* foreach */
 	NULL, /* timesync */
 	NULL, /* close */
 };
 
 dc_status_t
-vendor_product_device_open (dc_device_t **out, dc_context_t *context, dc_iostream_t *iostream)
+scielex_datalogger_device_open (dc_device_t **out, dc_context_t *context, dc_iostream_t *iostream)
 {
 	dc_status_t status = DC_STATUS_SUCCESS;
-	vendor_product_device_t *device = NULL;
+	scielex_datalogger_device_t *device = NULL;
 
 	if (out == NULL)
 		return DC_STATUS_INVALIDARGS;
 
 	// Allocate memory.
-	device = (vendor_product_device_t *) dc_device_allocate (context, &vendor_product_device_vtable);
+	device = (scielex_datalogger_device_t *) dc_device_allocate (context, &scielex_datalogger_device_vtable);
 	if (device == NULL) {
 		ERROR (context, "Failed to allocate memory.");
 		return DC_STATUS_NOMEMORY;
@@ -97,9 +97,9 @@ error_free:
 }
 
 static dc_status_t
-vendor_product_device_set_fingerprint (dc_device_t *abstract, const unsigned char data[], unsigned int size)
+scielex_datalogger_device_set_fingerprint (dc_device_t *abstract, const unsigned char data[], unsigned int size)
 {
-	vendor_product_device_t *device = (vendor_product_device_t *) abstract;
+	scielex_datalogger_device_t *device = (scielex_datalogger_device_t *) abstract;
 
 	if (size && size != sizeof (device->fingerprint))
 		return DC_STATUS_INVALIDARGS;
@@ -113,10 +113,10 @@ vendor_product_device_set_fingerprint (dc_device_t *abstract, const unsigned cha
 }
 
 static dc_status_t
-vendor_product_device_foreach (dc_device_t *abstract, dc_dive_callback_t callback, void *userdata)
+scielex_datalogger_device_foreach (dc_device_t *abstract, dc_dive_callback_t callback, void *userdata)
 {
 	dc_status_t status = DC_STATUS_SUCCESS;
-	vendor_product_device_t *device = (vendor_product_device_t *) abstract;
+	scielex_datalogger_device_t *device = (scielex_datalogger_device_t *) abstract;
 
 	// TODO
 

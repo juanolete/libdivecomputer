@@ -65,7 +65,7 @@
 #include "deepblu_cosmiq.h"
 #include "oceans_s1.h"
 #include "divesoft_freedom.h"
-#include "vendor_product.h"
+#include "scielex_datalogger.h"
 
 #include "context-private.h"
 #include "parser-private.h"
@@ -206,8 +206,8 @@ dc_parser_new_internal (dc_parser_t **out, dc_context_t *context, const unsigned
 	case DC_FAMILY_DIVESOFT_FREEDOM:
 		rc = divesoft_freedom_parser_create (&parser, context, data, size);
 		break;
-	case DC_FAMILY_VENDOR_PRODUCT:
-		rc = vendor_product_parser_create (&parser, context, data, size);
+	case DC_FAMILY_SCIELEX_DATALOGGER:
+		rc = scielex_datalogger_parser_create (&parser, context, data, size);
 		break;
 	default:
 		return DC_STATUS_INVALIDARGS;

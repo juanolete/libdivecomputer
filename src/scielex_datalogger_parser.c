@@ -24,42 +24,42 @@
 
 #include <libdivecomputer/units.h>
 
-#include "vendor_product.h"
+#include "scielex_datalogger.h"
 #include "context-private.h"
 #include "parser-private.h"
 #include "checksum.h"
 #include "array.h"
 
-typedef struct vendor_product_parser_t {
+typedef struct scielex_datalogger_parser_t {
 	dc_parser_t base;
-} vendor_product_parser_t;
+} scielex_datalogger_parser_t;
 
-static dc_status_t vendor_product_parser_get_datetime (dc_parser_t *abstract, dc_datetime_t *datetime);
-static dc_status_t vendor_product_parser_get_field (dc_parser_t *abstract, dc_field_type_t type, unsigned int flags, void *value);
-static dc_status_t vendor_product_parser_samples_foreach (dc_parser_t *abstract, dc_sample_callback_t callback, void *userdata);
+static dc_status_t scielex_datalogger_parser_get_datetime (dc_parser_t *abstract, dc_datetime_t *datetime);
+static dc_status_t scielex_datalogger_parser_get_field (dc_parser_t *abstract, dc_field_type_t type, unsigned int flags, void *value);
+static dc_status_t scielex_datalogger_parser_samples_foreach (dc_parser_t *abstract, dc_sample_callback_t callback, void *userdata);
 
-static const dc_parser_vtable_t vendor_product_parser_vtable = {
-	sizeof(vendor_product_parser_t),
-	DC_FAMILY_VENDOR_PRODUCT,
+static const dc_parser_vtable_t scielex_datalogger_parser_vtable = {
+	sizeof(scielex_datalogger_parser_t),
+	DC_FAMILY_SCIELEX_DATALOGGER,
 	NULL, /* set_clock */
 	NULL, /* set_atmospheric */
 	NULL, /* set_density */
-	vendor_product_parser_get_datetime, /* datetime */
-	vendor_product_parser_get_field, /* fields */
-	vendor_product_parser_samples_foreach, /* samples_foreach */
+	scielex_datalogger_parser_get_datetime, /* datetime */
+	scielex_datalogger_parser_get_field, /* fields */
+	scielex_datalogger_parser_samples_foreach, /* samples_foreach */
 	NULL /* destroy */
 };
 
 dc_status_t
-vendor_product_parser_create (dc_parser_t **out, dc_context_t *context, const unsigned char data[], size_t size)
+scielex_datalogger_parser_create (dc_parser_t **out, dc_context_t *context, const unsigned char data[], size_t size)
 {
-	vendor_product_parser_t *parser = NULL;
+	scielex_datalogger_parser_t *parser = NULL;
 
 	if (out == NULL)
 		return DC_STATUS_INVALIDARGS;
 
 	// Allocate memory.
-	parser = (vendor_product_parser_t *) dc_parser_allocate (context, &vendor_product_parser_vtable, data, size);
+	parser = (scielex_datalogger_parser_t *) dc_parser_allocate (context, &scielex_datalogger_parser_vtable, data, size);
 	if (parser == NULL) {
 		ERROR (context, "Failed to allocate memory.");
 		return DC_STATUS_NOMEMORY;
@@ -74,10 +74,10 @@ vendor_product_parser_create (dc_parser_t **out, dc_context_t *context, const un
 }
 
 static dc_status_t
-vendor_product_parser_get_datetime (dc_parser_t *abstract, dc_datetime_t *datetime)
+scielex_datalogger_parser_get_datetime (dc_parser_t *abstract, dc_datetime_t *datetime)
 {
 	dc_status_t status = DC_STATUS_SUCCESS;
-	vendor_product_parser_t *parser = (vendor_product_parser_t *) abstract;
+	scielex_datalogger_parser_t *parser = (scielex_datalogger_parser_t *) abstract;
 	const unsigned char *data = abstract->data;
 	unsigned int size = abstract->size;
 
@@ -87,10 +87,10 @@ vendor_product_parser_get_datetime (dc_parser_t *abstract, dc_datetime_t *dateti
 }
 
 static dc_status_t
-vendor_product_parser_get_field (dc_parser_t *abstract, dc_field_type_t type, unsigned int flags, void *value)
+scielex_datalogger_parser_get_field (dc_parser_t *abstract, dc_field_type_t type, unsigned int flags, void *value)
 {
 	dc_status_t status = DC_STATUS_SUCCESS;
-	vendor_product_parser_t *parser = (vendor_product_parser_t *) abstract;
+	scielex_datalogger_parser_t *parser = (scielex_datalogger_parser_t *) abstract;
 	const unsigned char *data = abstract->data;
 	unsigned int size = abstract->size;
 
@@ -162,10 +162,10 @@ vendor_product_parser_get_field (dc_parser_t *abstract, dc_field_type_t type, un
 }
 
 static dc_status_t
-vendor_product_parser_samples_foreach (dc_parser_t *abstract, dc_sample_callback_t callback, void *userdata)
+scielex_datalogger_parser_samples_foreach (dc_parser_t *abstract, dc_sample_callback_t callback, void *userdata)
 {
 	dc_status_t status = DC_STATUS_SUCCESS;
-	vendor_product_parser_t *parser = (vendor_product_parser_t *) abstract;
+	scielex_datalogger_parser_t *parser = (scielex_datalogger_parser_t *) abstract;
 	const unsigned char *data = abstract->data;
 	unsigned int size = abstract->size;
 

@@ -114,8 +114,8 @@ LOCAL_SRC_FILES := \
 	src/uwatec_memomouse_parser.c \
 	src/uwatec_smart.c \
 	src/uwatec_smart_parser.c \
-	src/vendor_product.c \
-	src/vendor_product_parser.c \
+	src/scielex_datalogger.c \
+	src/scielex_datalogger.c \
 	src/version.c \
 	src/zeagle_n2ition3.c
 include $(BUILD_SHARED_LIBRARY)
